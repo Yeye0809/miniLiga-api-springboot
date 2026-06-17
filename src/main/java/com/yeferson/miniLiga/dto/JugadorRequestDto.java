@@ -1,29 +1,22 @@
-package com.yeferson.miniLiga.entity;
+package com.yeferson.miniLiga.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.yeferson.miniLiga.entity.Equipo;
 import com.yeferson.miniLiga.enums.Posicion;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-@Entity
-@Getter @Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Jugador {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nombre;
-    private  Long numeroCamisa;
-    @Enumerated(EnumType.STRING)
-    private Posicion posicion;
+public class JugadorRequestDto {
 
-    @ManyToOne
-    @JoinColumn(name = "equipo_id")
-    @JsonBackReference
+    private String nombre;
+    private Long numeroCamisa;
+    private Posicion posicion;
     private Equipo equipo;
 
 }
