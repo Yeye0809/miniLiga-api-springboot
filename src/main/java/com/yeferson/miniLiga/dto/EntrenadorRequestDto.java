@@ -1,6 +1,5 @@
 package com.yeferson.miniLiga.dto;
 
-import com.yeferson.miniLiga.entity.Equipo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
