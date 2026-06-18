@@ -11,7 +11,7 @@ public class JugadorMapper {
         dto.setNumeroCamisa(j.getNumeroCamisa());
 
         if( j.getEquipo() != null ){
-            dto.setEquipo(j.getEquipo());
+            dto.setEquipo(j.getEquipo().getNombre());
         }
         dto.setNombre(j.getNombre());
 
