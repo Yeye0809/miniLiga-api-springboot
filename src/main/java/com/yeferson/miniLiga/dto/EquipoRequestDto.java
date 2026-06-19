@@ -17,6 +17,6 @@ public class EquipoRequestDto {
     private String nombre;
     private Long torneo;
     private List<Long> idJugadores;
-    private Entrenador entrenador;
+    private Long entrenador;
 
 }

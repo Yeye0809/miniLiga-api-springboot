@@ -9,5 +9,8 @@ public interface EquipoService {
 
     EquipoResponseDto saveEquipo(EquipoRequestDto dto);
     List<EquipoResponseDto> getEquipos();
+    EquipoResponseDto updateEntrenadorAEquipo(Long idEquipo, EquipoRequestDto equipo);
+    EquipoResponseDto getEquipoById(Long id);
+
 
 }

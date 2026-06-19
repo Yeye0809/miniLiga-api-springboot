@@ -26,4 +26,15 @@ public class EquipoController {
         return ResponseEntity.ok(equipoService.getEquipos());
     }
 
+    @PatchMapping("/{idEquipo}")
+    public ResponseEntity<EquipoResponseDto> updateEntrenadorAEquipo(@PathVariable Long idEquipo,@RequestBody EquipoRequestDto equipo){
+        return ResponseEntity.ok(equipoService.updateEntrenadorAEquipo(idEquipo, equipo));
+    }
+
+    @GetMapping("/{id}")
+    public  ResponseEntity<EquipoResponseDto> getEquipoById(@PathVariable Long id){
+        return  ResponseEntity.ok(equipoService.getEquipoById(id));
+    }
+
+
 }
