@@ -16,6 +16,7 @@ public class PartidoRequestDto {
     private Long equipoVisitante;
     private Integer golesEquipoLocal;
     private Integer golesEquipoVisitante;
+    private Long torneoId;
     private LocalDate fecha;
 
 }

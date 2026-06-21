@@ -1,5 +1,6 @@
 package com.yeferson.miniLiga.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,11 @@ public class Partido {
     @ManyToOne
     @JoinColumn(name = "equipo_visitante")
     private Equipo equipoVisitante;
+
+    @ManyToOne
+    @JoinColumn(name = "torneo_id")
+    @JsonBackReference
+    private Torneo torneo;
 
     private Integer golesEquipoLocal;
     private Integer golesEquipoVisitante;

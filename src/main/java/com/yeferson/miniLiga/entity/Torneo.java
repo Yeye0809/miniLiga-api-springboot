@@ -31,4 +31,8 @@ public class Torneo {
     @JsonManagedReference
     private List<Equipo> equipos;
 
+    @OneToMany(mappedBy = "torneo")
+    @JsonManagedReference
+    private List<Partido> partidos;
+
 }

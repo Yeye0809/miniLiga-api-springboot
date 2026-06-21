@@ -16,5 +16,7 @@ public class EstadisticasDto {
     private int pg;
     private int pp;
     private int pe;
+    private int gf;
+    private int gc;
 
 }

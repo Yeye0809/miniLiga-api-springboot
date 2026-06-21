@@ -4,9 +4,11 @@ import com.yeferson.miniLiga.dto.PartidoRequestDto;
 import com.yeferson.miniLiga.dto.PartidoResponseDto;
 import com.yeferson.miniLiga.entity.Equipo;
 import com.yeferson.miniLiga.entity.Partido;
+import com.yeferson.miniLiga.entity.Torneo;
 import com.yeferson.miniLiga.mapper.PartidoMapper;
 import com.yeferson.miniLiga.repository.EquipoRepository;
 import com.yeferson.miniLiga.repository.PartidoRepository;
+import com.yeferson.miniLiga.repository.TorneoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,14 +23,18 @@ public class PartidoServiceImpl implements PartidoService{
     @Autowired
     PartidoRepository partidoRepository;
 
+    @Autowired
+    TorneoRepository torneoRepository;
+
     @Override
     public PartidoResponseDto savePartido(PartidoRequestDto dto){
 
         Equipo equipoLocal = equipoRepository.findById(dto.getEquipoLocal()).orElseThrow(()-> new RuntimeException("equipo no encontrado"));
         Equipo equipoVisitante = equipoRepository.findById(dto.getEquipoVisitante()).orElseThrow(()-> new RuntimeException("equipo no encontrado"));
-
+        Torneo torneo = torneoRepository.findById(dto.getTorneoId()).orElseThrow(()-> new RuntimeException("torneo no encontrado"));
         Partido partido = new Partido();
 
+        partido.setTorneo(torneo);
         partido.setEquipoLocal(equipoLocal);
         partido.setEquipoVisitante(equipoVisitante);
         partido.setFecha(dto.getFecha());
