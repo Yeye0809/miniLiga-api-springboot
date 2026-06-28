@@ -25,4 +25,9 @@ public class TorneoController {
     public ResponseEntity<List<TorneoResponseDto>> getTorneos(){
         return ResponseEntity.ok(torneoService.getTorneos());
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TorneoResponseDto> updateTorneo(@PathVariable Long id, @RequestBody TorneoRequestDto dto){
+        return ResponseEntity.ok(torneoService.updateTorneo(id, dto));
+    }
 }

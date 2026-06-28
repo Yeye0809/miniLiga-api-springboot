@@ -22,6 +22,6 @@ public class TorneoResponseDto {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private Boolean activo;
-    private List<Equipo> equipos;
+    private List<String> equipos;
 
 }

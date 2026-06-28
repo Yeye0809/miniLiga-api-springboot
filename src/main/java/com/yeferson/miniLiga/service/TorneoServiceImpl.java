@@ -34,4 +34,17 @@ public class TorneoServiceImpl implements TorneoService{
     public List<TorneoResponseDto> getTorneos(){
         return torneoRepository.findAll().stream().map(TorneoMapper::toDto).toList();
     }
+
+    @Override
+    public TorneoResponseDto updateTorneo(Long id, TorneoRequestDto dto){
+        Torneo torneo = torneoRepository.findById(id).orElseThrow(()-> new RuntimeException("torneo no encontrado"));
+        torneo.setNombre(dto.getNombre());
+        torneo.setDescripcion(dto.getDescripcion());
+        torneo.setFechaInicio(dto.getFechaInicio());
+        torneo.setFechaFin(dto.getFechaFin());
+
+        Torneo torneoUpdate = torneoRepository.save(torneo);
+
+        return TorneoMapper.toDto(torneoUpdate);
+    }
 }

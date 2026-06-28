@@ -9,4 +9,5 @@ public interface TorneoService {
 
     TorneoResponseDto saveTorneo(TorneoRequestDto dto);
     List<TorneoResponseDto> getTorneos();
+    TorneoResponseDto updateTorneo(Long id, TorneoRequestDto dto);
 }

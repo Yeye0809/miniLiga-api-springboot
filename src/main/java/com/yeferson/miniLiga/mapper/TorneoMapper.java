@@ -1,6 +1,7 @@
 package com.yeferson.miniLiga.mapper;
 
 import com.yeferson.miniLiga.dto.TorneoResponseDto;
+import com.yeferson.miniLiga.entity.Equipo;
 import com.yeferson.miniLiga.entity.Torneo;
 
 public class TorneoMapper {
@@ -15,7 +16,7 @@ public class TorneoMapper {
         dto.setFechaFin(torneo.getFechaFin());
 
         if( torneo.getEquipos() != null){
-            dto.setEquipos(torneo.getEquipos());
+            dto.setEquipos(torneo.getEquipos().stream().map(Equipo::getNombre).toList());
         }
 
         return dto;
