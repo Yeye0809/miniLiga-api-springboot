@@ -3,6 +3,7 @@ package com.yeferson.miniLiga.service;
 import com.yeferson.miniLiga.dto.TorneoRequestDto;
 import com.yeferson.miniLiga.dto.TorneoResponseDto;
 import com.yeferson.miniLiga.entity.Torneo;
+import com.yeferson.miniLiga.exeption.usuarioNoEncontradoException;
 import com.yeferson.miniLiga.mapper.TorneoMapper;
 import com.yeferson.miniLiga.repository.TorneoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class TorneoServiceImpl implements TorneoService{
 
     @Override
     public TorneoResponseDto updateTorneo(Long id, TorneoRequestDto dto){
-        Torneo torneo = torneoRepository.findById(id).orElseThrow(()-> new RuntimeException("torneo no encontrado"));
+        Torneo torneo = torneoRepository.findById(id).orElseThrow(()-> new usuarioNoEncontradoException("Torneo con el ID " + id + " no encontrado"));
         torneo.setNombre(dto.getNombre());
         torneo.setDescripcion(dto.getDescripcion());
         torneo.setFechaInicio(dto.getFechaInicio());

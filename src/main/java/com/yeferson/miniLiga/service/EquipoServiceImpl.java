@@ -6,6 +6,7 @@ import com.yeferson.miniLiga.entity.Entrenador;
 import com.yeferson.miniLiga.entity.Equipo;
 import com.yeferson.miniLiga.entity.Jugador;
 import com.yeferson.miniLiga.entity.Torneo;
+import com.yeferson.miniLiga.exeption.usuarioNoEncontradoException;
 import com.yeferson.miniLiga.mapper.EquipoMapper;
 import com.yeferson.miniLiga.repository.EntrenadorRepository;
 import com.yeferson.miniLiga.repository.EquipoRepository;
@@ -72,7 +73,7 @@ public class EquipoServiceImpl implements EquipoService{
     @Override
     public EquipoResponseDto updateEntrenadorAEquipo(Long idEquipo, EquipoRequestDto dto){
 
-        Equipo equipo = equipoRepository.findById(idEquipo).orElseThrow(()-> new RuntimeException("Equipo no existe"));
+        Equipo equipo = equipoRepository.findById(idEquipo).orElseThrow(()-> new usuarioNoEncontradoException("Equipo con el ID: " + idEquipo + " no encontrado"));
         Entrenador entrenador = entrenadorRepository.findById(dto.getEntrenador()).orElseThrow(()-> new RuntimeException("Entrenador no existe"));
 
         equipo.setEntrenador(entrenador);
@@ -85,7 +86,7 @@ public class EquipoServiceImpl implements EquipoService{
 
     @Override
     public EquipoResponseDto getEquipoById(Long id){
-        Equipo equipo = equipoRepository.findById(id).orElseThrow(()-> new RuntimeException("Equipo no existe"));
+        Equipo equipo = equipoRepository.findById(id).orElseThrow(()-> new usuarioNoEncontradoException("Equipo con el ID: " + id + " no encontrado"));
 
         return EquipoMapper.toDto(equipo);
     }

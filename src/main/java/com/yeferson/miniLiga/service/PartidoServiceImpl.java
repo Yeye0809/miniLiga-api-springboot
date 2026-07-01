@@ -5,6 +5,7 @@ import com.yeferson.miniLiga.dto.PartidoResponseDto;
 import com.yeferson.miniLiga.entity.Equipo;
 import com.yeferson.miniLiga.entity.Partido;
 import com.yeferson.miniLiga.entity.Torneo;
+import com.yeferson.miniLiga.exeption.usuarioNoEncontradoException;
 import com.yeferson.miniLiga.mapper.PartidoMapper;
 import com.yeferson.miniLiga.repository.EquipoRepository;
 import com.yeferson.miniLiga.repository.PartidoRepository;
@@ -53,13 +54,13 @@ public class PartidoServiceImpl implements PartidoService{
 
     @Override
     public PartidoResponseDto getPartidoById(Long id){
-        Partido partido = partidoRepository.findById(id).orElseThrow(()-> new RuntimeException("Partido no encontrado"));
+        Partido partido = partidoRepository.findById(id).orElseThrow(()-> new usuarioNoEncontradoException("Partido con ID: " + id + " no encontrado"));
         return PartidoMapper.toDto(partido);
     }
 
     @Override
     public  PartidoResponseDto updateFinalPartido(Long id, PartidoRequestDto dto ){
-        Partido partido = partidoRepository.findById(id).orElseThrow(()-> new RuntimeException("Partido no encontrado"));
+        Partido partido = partidoRepository.findById(id).orElseThrow(()-> new usuarioNoEncontradoException("Partido con ID: " + id + " no encontrado"));
 
         if( dto.getFecha() != null ){
             partido.setFecha(dto.getFecha());
@@ -83,10 +84,10 @@ public class PartidoServiceImpl implements PartidoService{
 
     @Override
     public PartidoResponseDto updatePartido(Long id, PartidoRequestDto dto ){
-        Partido partido = partidoRepository.findById(id).orElseThrow(()-> new RuntimeException("Partido no encontrado"));
+        Partido partido = partidoRepository.findById(id).orElseThrow(()-> new usuarioNoEncontradoException("Partido con ID: " + id + " no encontrado"));
 
-        Equipo equipoLocal = equipoRepository.findById(dto.getEquipoLocal()).orElseThrow(()-> new RuntimeException("equipo no encontrado"));
-        Equipo equipoVisitante = equipoRepository.findById(dto.getEquipoVisitante()).orElseThrow(()-> new RuntimeException("equipo no encontrado"));
+        Equipo equipoLocal = equipoRepository.findById(dto.getEquipoLocal()).orElseThrow(()-> new usuarioNoEncontradoException("Equipo local no encontrado"));
+        Equipo equipoVisitante = equipoRepository.findById(dto.getEquipoVisitante()).orElseThrow(()-> new usuarioNoEncontradoException("Equipo visitante no encontrado"));
 
         if( dto.getEquipoVisitante() != null ){
             partido.setEquipoVisitante(equipoVisitante);
